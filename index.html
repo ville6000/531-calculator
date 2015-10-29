@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>5/3/1 calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body ng-app="fiveThreeOneCalculator" ng-controller="CalculatorController">
+
+<header class="header">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1> 5/3/1 Calculator </h1>
+
+                    <p><a href="http://www.jimwendler.com/">Read more about the 5/3/1 method</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="training-maxes">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <form class="tm-form">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="bench.tm">Bench TRM</label>
+                                <input type="text" name="bench.tm" id="bench.tm" class="form-control"
+                                       ng-model="tms.bench" ng-keyup="calculateWeights('bench')">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="ohp_tm">OHP TM</label>
+                                <input type="text" name="ohp_tm" id="ohp_tm" class="form-control"
+                                       ng-model="tms.ohp" ng-keyup="calculateWeights('ohp')">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="squat_tm">Squat TM</label>
+                                <input type="text" name="squat_tm" id="squat_tm" class="form-control"
+                                       ng-model="tms.squat" ng-keyup="calculateWeights('squat')">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3">
+                            <div class="form-group">
+                                <label for="deadlift_tm">Deadlift TM</label>
+                                <input type="text" name="deadlift_tm" id="deadlift_tm" class="form-control"
+                                       ng-model="tms.deadlift" ng-keyup="calculateWeights('deadlift')">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="h3">Bench</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Week 1</th>
+                        <th>Week 2</th>
+                        <th>Week 3</th>
+                        <th>Deload</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{exercises.bench.week_1_set_1}} x 5</td>
+                        <td>{{exercises.bench.week_2_set_1}} x 3</td>
+                        <td>{{exercises.bench.week_3_set_1}} x 5</td>
+                        <td>{{exercises.bench.week_4_set_1}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.bench.week_1_set_2}} x 5</td>
+                        <td>{{exercises.bench.week_2_set_2}} x 3</td>
+                        <td>{{exercises.bench.week_3_set_2}} x 3</td>
+                        <td>{{exercises.bench.week_4_set_2}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.bench.week_1_set_3}} x 5+</td>
+                        <td>{{exercises.bench.week_2_set_3}} x 3+</td>
+                        <td>{{exercises.bench.week_3_set_3}} x 1+</td>
+                        <td>{{exercises.bench.week_4_set_3}} x 3</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="h3">OHP</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Week 1</th>
+                        <th>Week 2</th>
+                        <th>Week 3</th>
+                        <th>Deload</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{exercises.ohp.week_1_set_1}} x 5</td>
+                        <td>{{exercises.ohp.week_2_set_1}} x 3</td>
+                        <td>{{exercises.ohp.week_3_set_1}} x 5</td>
+                        <td>{{exercises.ohp.week_4_set_1}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.ohp.week_1_set_2}} x 5</td>
+                        <td>{{exercises.ohp.week_2_set_2}} x 3</td>
+                        <td>{{exercises.ohp.week_3_set_2}} x 3</td>
+                        <td>{{exercises.ohp.week_4_set_2}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.ohp.week_1_set_3}} x 5+</td>
+                        <td>{{exercises.ohp.week_2_set_3}} x 3+</td>
+                        <td>{{exercises.ohp.week_3_set_3}} x 1+</td>
+                        <td>{{exercises.ohp.week_4_set_3}} x 3</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="h3">Squat</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Week 1</th>
+                        <th>Week 2</th>
+                        <th>Week 3</th>
+                        <th>Deload</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{exercises.squat.week_1_set_1}} x 5</td>
+                        <td>{{exercises.squat.week_2_set_1}} x 3</td>
+                        <td>{{exercises.squat.week_3_set_1}} x 5</td>
+                        <td>{{exercises.squat.week_4_set_1}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.squat.week_1_set_2}} x 5</td>
+                        <td>{{exercises.squat.week_2_set_2}} x 3</td>
+                        <td>{{exercises.squat.week_3_set_2}} x 3</td>
+                        <td>{{exercises.squat.week_4_set_2}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.squat.week_1_set_3}} x 5+</td>
+                        <td>{{exercises.squat.week_2_set_3}} x 3+</td>
+                        <td>{{exercises.squat.week_3_set_3}} x 1+</td>
+                        <td>{{exercises.squat.week_4_set_3}} x 3</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h2 class="h3">Deadlift</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Week 1</th>
+                        <th>Week 2</th>
+                        <th>Week 3</th>
+                        <th>Deload</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{exercises.deadlift.week_1_set_1}} x 5</td>
+                        <td>{{exercises.deadlift.week_2_set_1}} x 3</td>
+                        <td>{{exercises.deadlift.week_3_set_1}} x 5</td>
+                        <td>{{exercises.deadlift.week_4_set_1}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.deadlift.week_1_set_2}} x 5</td>
+                        <td>{{exercises.deadlift.week_2_set_2}} x 3</td>
+                        <td>{{exercises.deadlift.week_3_set_2}} x 3</td>
+                        <td>{{exercises.deadlift.week_4_set_2}} x 3</td>
+                    </tr>
+                    <tr>
+                        <td>{{exercises.deadlift.week_1_set_3}} x 5+</td>
+                        <td>{{exercises.deadlift.week_2_set_3}} x 3+</td>
+                        <td>{{exercises.deadlift.week_3_set_3}} x 1+</td>
+                        <td>{{exercises.deadlift.week_4_set_3}} x 3</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="http://www.amazon.com/Simplest-Effective-Training-System-Strength-ebook/dp/B00AJ8CIQM/ref=sr_1_1?s=books&ie=UTF8&qid=1446126577&sr=1-1&keywords=5%2F3%2F1%3A+The+Simplest+and+Most+Effective+Training+System+for+Raw+Strength+%282nd+Edition%29">
+                    Buy the book!
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

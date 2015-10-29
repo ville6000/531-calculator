@@ -1,0 +1,12 @@
+html {
+    overflow-y: scroll;
+}
+
+.table th,
+.table td {
+    width: 25%;
+}
+
+.footer {
+    padding: 40px 0;
+}
