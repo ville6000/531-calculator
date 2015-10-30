@@ -1,2 +1,4 @@
 .idea
-bower_components
+src/assets/bower_components
+node_modules
+dist
