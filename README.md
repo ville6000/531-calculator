@@ -3,6 +3,7 @@
 ## Installation
 
 `$ bower install`
+
 `$ npm install`
 
 ## Build
