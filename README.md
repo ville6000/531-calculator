@@ -3,6 +3,13 @@
 ## Installation
 
 `$ bower install`
+`$ npm install`
+
+## Build
+
+`$ grunt`
+
+Create `src/analytics.html` to include it in build html.
 
 ## Demo
 
