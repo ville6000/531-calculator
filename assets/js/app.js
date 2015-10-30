@@ -20,7 +20,6 @@
             WEEK_4_SET_2_FACTOR = 0.75,
             WEEK_4_SET_3_FACTOR = 0.85;
 
-        $scope.has_training_maxes = false;
         $scope.tms = {};
         $scope.exercises = {
             bench:    {},
