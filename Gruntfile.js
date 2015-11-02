@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                 dest: 'dist/assets/css/styles.min.css'
             },
             dist_js:  {
-                src:  ['src/assets/bower_components/angular/angular.min.js', 'src/assets/js/app.js'],
+                src:  ['node_modules/angular/angular.min.js', 'src/assets/js/app.js'],
                 dest: 'dist/assets/js/app.min.js'
             }
         },
