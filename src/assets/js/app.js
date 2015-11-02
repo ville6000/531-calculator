@@ -6,19 +6,23 @@
     var app = angular.module('fiveThreeOneCalculator', []);
 
     function calculatorController($scope) {
-        var self                = this,
-            WEEK_1_SET_1_FACTOR = 0.65,
-            WEEK_1_SET_2_FACTOR = 0.75,
-            WEEK_1_SET_3_FACTOR = 0.85,
-            WEEK_2_SET_1_FACTOR = 0.70,
-            WEEK_2_SET_2_FACTOR = 0.80,
-            WEEK_2_SET_3_FACTOR = 0.90,
-            WEEK_3_SET_1_FACTOR = 0.75,
-            WEEK_3_SET_2_FACTOR = 0.85,
-            WEEK_3_SET_3_FACTOR = 0.95,
-            WEEK_4_SET_1_FACTOR = 0.65,
-            WEEK_4_SET_2_FACTOR = 0.75,
-            WEEK_4_SET_3_FACTOR = 0.85;
+        var self     = this,
+            factors  = {
+                WEEK_1_SET_1: 0.65,
+                WEEK_1_SET_2: 0.75,
+                WEEK_1_SET_3: 0.85,
+                WEEK_2_SET_1: 0.70,
+                WEEK_2_SET_2: 0.80,
+                WEEK_2_SET_3: 0.90,
+                WEEK_3_SET_1: 0.75,
+                WEEK_3_SET_2: 0.85,
+                WEEK_3_SET_3: 0.95,
+                WEEK_4_SET_1: 0.65,
+                WEEK_4_SET_2: 0.75,
+                WEEK_4_SET_3: 0.85
+            },
+            maxWeeks = 4,
+            maxSets  = 3;
 
         $scope.tms = {};
         $scope.exercises = {
@@ -32,18 +36,19 @@
             var exercise = $scope.exercises[exercise_name],
                 tm       = $scope.tms[exercise_name];
 
-            exercise.week_1_set_1 = self.calculateSetWeight(tm, WEEK_1_SET_1_FACTOR);
-            exercise.week_1_set_2 = self.calculateSetWeight(tm, WEEK_1_SET_2_FACTOR);
-            exercise.week_1_set_3 = self.calculateSetWeight(tm, WEEK_1_SET_3_FACTOR);
-            exercise.week_2_set_1 = self.calculateSetWeight(tm, WEEK_2_SET_1_FACTOR);
-            exercise.week_2_set_2 = self.calculateSetWeight(tm, WEEK_2_SET_2_FACTOR);
-            exercise.week_2_set_3 = self.calculateSetWeight(tm, WEEK_2_SET_3_FACTOR);
-            exercise.week_3_set_1 = self.calculateSetWeight(tm, WEEK_3_SET_1_FACTOR);
-            exercise.week_3_set_2 = self.calculateSetWeight(tm, WEEK_3_SET_2_FACTOR);
-            exercise.week_3_set_3 = self.calculateSetWeight(tm, WEEK_3_SET_3_FACTOR);
-            exercise.week_4_set_1 = self.calculateSetWeight(tm, WEEK_4_SET_1_FACTOR);
-            exercise.week_4_set_2 = self.calculateSetWeight(tm, WEEK_4_SET_2_FACTOR);
-            exercise.week_4_set_3 = self.calculateSetWeight(tm, WEEK_4_SET_3_FACTOR);
+            for (var weekIdx = 0; weekIdx < maxWeeks; weekIdx++) {
+                for (var setIdx = 0; setIdx < maxSets; setIdx++) {
+                    exercise[self.getSetKey(weekIdx, setIdx)] = self.calculateSetWeight(tm, self.getFactor(weekIdx, setIdx));
+                }
+            }
+        };
+
+        this.getSetKey = function (weekIdx, setIdx) {
+            return "week_" + ( weekIdx + 1) + "_set_" + ( setIdx + 1);
+        };
+
+        this.getFactor = function (weekIdx, setIdx) {
+            return factors[this.getSetKey(weekIdx, setIdx).toUpperCase()];
         };
 
         this.calculateSetWeight = function (tm, factor) {
