@@ -5,8 +5,8 @@ module.exports = function (grunt) {
         concat:      {
             dist_css: {
                 src:  [
-                    'src/assets/bower_components/bootstrap/dist/css/bootstrap.min.css',
-                    'src/assets/bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+                    'node_modules/bootstrap/dist/css/bootstrap.min.css',
+                    'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
                     'src/assets/css/main.css'
                 ],
                 dest: 'dist/assets/css/styles.min.css'

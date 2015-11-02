@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ville6000/531-calculator#readme",
   "devDependencies": {
+    "bootstrap": "^3.3.5",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-processhtml": "^0.3.8",
