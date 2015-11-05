@@ -7,7 +7,7 @@ ngDescribe({
             expect(deps.CalculatorService.calculateSetWeight(100, 0.9)).toEqual(90);
         });
 
-        it('calculates set weight from integer', function () {
+        it('calculates set weight from decimal', function () {
             expect(deps.CalculatorService.calculateSetWeight(97.5, 0.9)).toEqual(87.5);
         });
 
