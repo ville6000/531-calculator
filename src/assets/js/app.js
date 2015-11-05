@@ -5,7 +5,7 @@
 
     var app = angular.module('fiveThreeOneCalculator', []);
 
-    function calculatorController($scope) {
+    function CalculatorController($scope, CalculatorService) {
         var self     = this,
             factors  = {
                 WEEK_1_SET_1: 0.65,
@@ -38,7 +38,7 @@
 
             for (var weekIdx = 0; weekIdx < maxWeeks; weekIdx++) {
                 for (var setIdx = 0; setIdx < maxSets; setIdx++) {
-                    exercise[self.getSetKey(weekIdx, setIdx)] = self.calculateSetWeight(tm, self.getFactor(weekIdx, setIdx));
+                    exercise[self.getSetKey(weekIdx, setIdx)] = CalculatorService.calculateSetWeight(tm, self.getFactor(weekIdx, setIdx));
                 }
             }
         };
@@ -50,7 +50,11 @@
         this.getFactor = function (weekIdx, setIdx) {
             return factors[this.getSetKey(weekIdx, setIdx).toUpperCase()];
         };
+    }
 
+    app.controller('CalculatorController', ['$scope', 'CalculatorService', CalculatorController]);
+
+    function CalculatorService() {
         this.calculateSetWeight = function (tm, factor) {
             if (typeof tm === 'undefined') {
                 tm = 0;
@@ -60,5 +64,5 @@
         }
     }
 
-    app.controller('CalculatorController', calculatorController);
+    app.service('CalculatorService', CalculatorService);
 })();

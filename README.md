@@ -4,6 +4,10 @@
 
 `$ npm install`
 
+## Tests
+
+`$ karma start`
+
 ## Build
 
 `$ grunt`
