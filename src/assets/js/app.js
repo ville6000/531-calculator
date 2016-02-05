@@ -36,6 +36,8 @@
             var exercise = $scope.exercises[exercise_name],
                 tm       = $scope.tms[exercise_name];
 
+            self.sendCalculateEvent();
+
             for (var weekIdx = 0; weekIdx < maxWeeks; weekIdx++) {
                 for (var setIdx = 0; setIdx < maxSets; setIdx++) {
                     exercise[self.getSetKey(weekIdx, setIdx)] = CalculatorService.calculateSetWeight(tm, self.getFactor(weekIdx, setIdx));
@@ -50,6 +52,14 @@
         this.getFactor = function (weekIdx, setIdx) {
             return factors[this.getSetKey(weekIdx, setIdx).toUpperCase()];
         };
+
+        this.sendCalculateEvent = function () {
+            if ( typeof ga !== 'undefined') {
+                ga('send', 'event', '5/3/1 Calculator', 'Calculate');
+                this.sendCalculateEvent = function () {};
+            }
+        }
+
     }
 
     app.controller('CalculatorController', ['$scope', 'CalculatorService', CalculatorController]);
